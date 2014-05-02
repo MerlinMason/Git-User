@@ -17,5 +17,17 @@
             <%- favLang.quantity %> repositories primarily written in
             <%- favLang.name %>.
         </h2>
+
+        <% if (otherLangs.length) { %>
+            <h3>They also have the repositories in the following languages:</h3>
+            <ul>
+                <% _.each(otherLangs, function(other) { %>
+                    <li>
+                        <%- other.name %>
+                        (<%- other.quantity %>)
+                    </li>
+                <% }); %>
+            </ul>
+        <% } %>
     </div>
 </div>
