@@ -3,7 +3,7 @@
 
     var gituser = {
 
-        templateurl:     window.location.href + "/templates/",
+        templateurl:     window.location.href + "templates/",
         api: "https://api.github.com/users/",
         cache: {},
         errors: { messages: [] },
@@ -23,24 +23,36 @@
 
             if (query.length) {
                 $.when(
+
                     $.get(gituser.api + query, function (user) {
                         // If there's no name, set it to the username
                         if (!user.name) {
                             user.name = user.login;
                         }
                         gituser.cache.user = user;
-                    }).fail(function () {
-                        var error = "Sorry, this username doesn't exist!";
+                    }).fail(function (response) {
+                        var error;
+                        if (response.responseJSON.message) {
+                            error = response.responseJSON.message;
+                        } else {
+                            error = "Sorry, this username doesn't exist!";
+                        }
                         gituser.errors.messages.push(error);
                     }),
 
                     $.get(gituser.api + query + "/repos", function (repos) {
                         gituser.cache.repos = repos;
-                    }).fail(function () {
-                        var error = "Sorry, there's been an error fetching repos for this username!";
+                    }).fail(function (response) {
+                        var error;
+                        if (response.responseJSON.message) {
+                            error = response.responseJSON.message;
+                        } else {
+                            error = "Sorry, there's been an error fetching repos for this username!";
+                        }
                         gituser.errors.messages.push(error);
                         gituser.renderView(gituser.errors, "error.html", "#result-container");
                     })
+
                 ).then(function () {
                     // Clear the input field
                     $(input).val("");
