@@ -23,9 +23,8 @@
 
             if (query.length) {
                 $.when(
-
                     $.get(gituser.api + query, function (user) {
-                        // If there's no name, set it to username
+                        // If there's no name, set it to the username
                         if (!user.name) {
                             user.name = user.login;
                         }
@@ -42,7 +41,6 @@
                         gituser.errors.messages.push(error);
                         gituser.renderView(gituser.errors, "error.html", "#result-container");
                     })
-
                 ).then(function () {
                     // Clear the input field
                     $(input).val("");
@@ -50,6 +48,7 @@
                     gituser.serialize();
                 });
             } else {
+                // else if users not types anything show error message
                 var error = "Please enter a username!";
                 gituser.errors.messages.push(error);
                 gituser.renderView(gituser.errors, "error.html", "#result-container");
@@ -59,18 +58,21 @@
         serialize: function () {
             var langs = [];
 
+            // Go through all the repos and pop them in a tempory collection
             if (gituser.cache.repos.length) {
                 _.each(gituser.cache.repos, function (repo) {
 
                     var existingLanguage = _.findWhere(langs, { name: repo.language });
 
                     if (!existingLanguage) {
+                        // If this language isn't already in the collection, add it
                         var lang = {};
                         lang.name = repo.language;
                         lang.quantity = 1;
 
                         langs.push(lang);
                     } else {
+                        // If it is, then up the count
                         existingLanguage.quantity++;
                     }
                 });
@@ -81,10 +83,12 @@
                 return;
             }
 
+            // Use underscore's _.max to get our most popular language
             gituser.cache.favLang = _.max(langs, function (lang) { return lang.quantity; });
+            // Use underscore's _.filter to grab all the other languages
             gituser.cache.otherLangs = _.filter(langs, function (lang) { return lang.name !== gituser.cache.favLang.name; });
 
-            // Render the template
+            // Now we've got all our data, we can render the template
             gituser.renderView(gituser.cache, "result.html", "#result-container");
         },
 
@@ -93,8 +97,6 @@
                 $(el).html(
                     _.template(template, data)
                 );
-
-                $(el).fadeIn("slow");
 
                 if (callback) { callback(); }
 
