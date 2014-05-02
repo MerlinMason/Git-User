@@ -32,10 +32,34 @@
                         alert("error fetching repos");
                     })
                 ).then(function () {
-                    console.log(gituser.cache);
-                    gituser.renderView(gituser.cache, "result.html", "#result", false);
+                    gituser.discoverFavourites();
                 });
             }
+        },
+
+        discoverFavourites: function () {
+            var langs = [];
+
+            _.each(gituser.cache.repos, function (repo) {
+
+                var existingLanguage = _.findWhere(langs, { name: repo.language });
+
+                if (!existingLanguage) {
+                    var lang = {};
+                    lang.name = repo.language;
+                    lang.quantity = 1;
+
+                    langs.push(lang);
+                } else {
+                    existingLanguage.quantity++;
+                }
+            });
+
+            gituser.cache.favLang = _.max(langs, function (lang) { return lang.quantity; });
+            gituser.cache.otherLangs = _.filter(langs, function (lang) { return lang.name !== gituser.cache.favLang.name; });
+            console.log(gituser.cache);
+
+            gituser.renderView(gituser.cache, "result.html", "#result", false);
         },
 
         renderView: function (data, template, el, callback) {
@@ -48,8 +72,7 @@
 
                 if (callback) { callback(); }
             });
-        },
-
+        }
     };
 
     // DOM Ready
