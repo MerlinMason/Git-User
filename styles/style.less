@@ -37,9 +37,22 @@ body {
     font-size:@font-size-base;
     line-height:@line-height-base;
     color:@color-text;
+    text-align:center;
 }
 
 p { margin-bottom:@space; }
+
+.main-heading {
+    font-size:74px;
+    @media (max-width:@break-medium) { font-size:48px; }
+    @media (max-width:@break-small) { font-size:36px; }
+}
+
+.sub-heading {
+    font-size:48px;
+    @media (max-width:@break-medium) { font-size:36px; }
+    @media (max-width:@break-small) { font-size:24px; }
+}
 
 
 //----------------------------------------------------------------------------//
@@ -70,8 +83,13 @@ input[type='text'],
 input[type='email'],
 input[type='password'],
 textarea {
-    padding:(@space/2);
-    border:none;
+    width:100%;
+    margin:0;
+    padding:@space;
+    font-size:@font-size-large;
+    color:@color-text;
+    border:1px solid #ccc;
+    box-shadow:4px 4px 0 0 #ccc;
     .placeholder();
     &:hover {
 
@@ -85,46 +103,84 @@ textarea {
 .btn,
 button,
 input[type="submit"] {
-
+    margin:0;
+    padding:0 (@space*2);
+    background:#ffc700;
+    font-size:@font-size-large;
+    font-weight:bold;
+    font-family:@font-family-base;
+    color:#fff;
+    border:1px solid #ccc;
     &:hover {
 
     }
     &:focus {
-
+        outline:none;
     }
 }
 
 
 //----------------------------------------------------------------------------//
-//  Header
+//  Masthead
 //----------------------------------------------------------------------------//
 
 
-.page-header {
-    @media (max-width:@break-small) { }
-    @media (max-width:@break-medium) { }
+.masthead {
+    background:#2EB3CC url(img/homercat.png) no-repeat center top;
+    background-size:240px auto;
+    padding:240px 0 (@space*4);
+    color:#fff;
     @media (max-width:@break-large) { }
-}
-
-
-//----------------------------------------------------------------------------//
-//  Content
-//----------------------------------------------------------------------------//
-
-.avatar {
-    width:100px;
-}
-.user-details {
-    padding-left:(100px + @space);
-}
-
-//----------------------------------------------------------------------------//
-//  Footer
-//----------------------------------------------------------------------------//
-
-
-.page-footer {
-    @media (max-width:@break-small) { }
     @media (max-width:@break-medium) { }
-    @media (max-width:@break-large) { }
+    @media (max-width:@break-small) { }
 }
+
+
+//----------------------------------------------------------------------------//
+//  Form
+//----------------------------------------------------------------------------//
+
+
+.form {
+    margin-top:-30px;
+    margin-bottom:(@space*4);
+    .input-wrapper {
+        position:relative;
+        button {
+            .position(absolute, 0, 0, 0, auto);
+        }
+    }
+}
+
+
+//----------------------------------------------------------------------------//
+//  Result
+//----------------------------------------------------------------------------//
+
+
+.result {
+    margin-bottom:(@space*4);
+    .avatar {
+        width:100px;
+        .center-block();
+    }
+    .user-details {
+        padding-left:(100px + @space);
+    }
+    .heart {
+        color:#E60000;
+    }
+    .repo-list {
+        max-width:300px;
+        .center-block;
+        text-align:left;
+        li {
+            list-style:none;
+            padding:@space;
+            & + li {
+                border-top:1px solid @black-10;
+            }
+        }
+    }
+}
+

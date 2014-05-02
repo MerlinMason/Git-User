@@ -59,7 +59,7 @@
             gituser.cache.otherLangs = _.filter(langs, function (lang) { return lang.name !== gituser.cache.favLang.name; });
             console.log(gituser.cache);
 
-            gituser.renderView(gituser.cache, "result.html", "#result", false);
+            gituser.renderView(gituser.cache, "result.html", "#result-container", false);
         },
 
         renderView: function (data, template, el, callback) {

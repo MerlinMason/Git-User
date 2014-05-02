@@ -14,7 +14,7 @@
 
     <meta name="description" content="">
 
-    <title>Git User</title>
+    <title>GitUser</title>
 
     <link rel="stylesheet" type="text/css" media="all" href="style.css"/>
     <link rel="icon" type="image/png" href="/img/favicon.png">
@@ -22,16 +22,29 @@
 </head>
 <body>
 
-<div class="container">
-    <h1>Welcome to GitUser!</h1>
-    <p>Type in a GitHub username below to discover that persons favourite languages!</p>
-    <noscript>Sorry, your browser has javaScript disabled, this website will not function correctly</noscript>
-    <form id="getuser">
-        <input type="text" class="username">
-        <button id="submit">Go!</button>
-    </form>
-    <div id="result"></div>
-</div>
+<section class="masthead">
+    <div class="container">
+        <h1 class="main-heading">Welcome to GitUser!</h1>
+        <p>Type in a GitHub username below to discover that persons favourite languages!</p>
+    </div>
+</section>
+
+<section class="form container">
+    <div class="row">
+        <form id="getuser" class="col-sm-8 col-sm-offset-2">
+        <noscript>Sorry, your browser has javaScript disabled, this website will not function correctly</noscript>
+            <div class="input-wrapper">
+                <input type="text" class="username" placeholder="GitHub username">
+                <button id="submit">Search!</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<section class="result">
+    <div class="container" id="result-container">
+    </div>
+</section>
 
 
 <!-- if we're in production mode, include minified concatenated script

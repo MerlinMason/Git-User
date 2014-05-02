@@ -1,33 +1,51 @@
 <div class="row">
-    <div class="col-sm-6">
-        <img class="avatar fl" src="<%- user.avatar_url %>" alt="User avatar">
-        <div class="user-details">
-            <h3>
-                <a target="_blank" href="<%- user.html_url %>">
-                    <%- user.name %>
-                    (<%- user.login %>)
-                </a>
-            </h3>
-            <p>Based in <%- user.location %> and has <%- repos.length %> repos.</p>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <h2>
-            <%- user.name %>'s has
-            <%- favLang.quantity %> repositories primarily written in
-            <%- favLang.name %>.
+    <div class="col-sm-8 col-sm-offset-2">
+
+        <img class="avatar" src="<%- user.avatar_url %>" alt="User avatar">
+
+        <h2 class="sub-heading mb-1x">
+            <%- user.name %>
+            <span class="heart">&hearts;</span>
+            <%- favLang.name %>!
         </h2>
 
+        <h3 class="meta-heading mb-05x">
+            <a target="_blank" href="<%- user.html_url %>">
+                <%- user.name %>
+                (<%- user.login %>)
+            </a>
+        </h3>
+
+        <p>
+            <%- user.name %>'s
+            favourite language is
+            <%- favLang.name %>.
+            <br>
+            They have
+            <%- favLang.quantity %>
+            repositories where it's the primary language.
+            <br>
+            They're based in
+            <%- user.location %>
+            and have a total of
+            <%- repos.length %>
+            public repos.
+        </p>
+
         <% if (otherLangs.length) { %>
-            <h3>They also have the repositories in the following languages:</h3>
-            <ul>
+            <p>They also have repositories in the following languages:</p>
+            <ul class="repo-list">
                 <% _.each(otherLangs, function(other) { %>
-                    <li>
+                    <li class="cf">
                         <%- other.name %>
-                        (<%- other.quantity %>)
+                        <span class="fr">
+                            (<%- other.quantity %>)
+                        </span>
                     </li>
                 <% }); %>
             </ul>
         <% } %>
+
     </div>
+
 </div>
