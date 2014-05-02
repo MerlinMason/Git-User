@@ -1,1 +1,17 @@
-Hello World!
+<div class="row">
+    <div class="col-sm-6">
+        <img class="avatar fl" src="<%- user.avatar_url %>" alt="User avatar">
+        <div class="user-details">
+            <h3>
+                <a target="_blank" href="<%- user.html_url %>">
+                    <%- user.name %>
+                    (<%- user.login %>)
+                </a>
+            </h3>
+            <p>Based in <%- user.location %> and has <%- repos.length %> repos.</p>
+        </div>
+    </div>
+    <div class="col-sm-6">
+
+    </div>
+</div>

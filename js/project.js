@@ -23,9 +23,13 @@
                 $.when(
                     $.get(gituser.api + query, function (user) {
                         gituser.cache.user = user;
+                    }).fail(function () {
+                        alert("error fetching user");
                     }),
                     $.get(gituser.api + query + "/repos", function (repos) {
                         gituser.cache.repos = repos;
+                    }).fail(function () {
+                        alert("error fetching repos");
                     })
                 ).then(function () {
                     console.log(gituser.cache);
