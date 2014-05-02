@@ -1,0 +1,8 @@
+.DS_Store
+/js/bower
+/node_modules
+npm-debug.log
+/js/production.js
+*.css
+*.map
+dploy.yaml
