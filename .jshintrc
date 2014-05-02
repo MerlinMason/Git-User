@@ -11,6 +11,7 @@
     "trailing": true,
     "globals": {
         "jQuery": true,
+        "_": true,
         "console": true,
         "alert": true,
         "module": true,
