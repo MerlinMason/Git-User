@@ -1,26 +1,14 @@
 (function ($) {
     "use strict";
 
-    var starter = {
+    var gituser = {
 
         init: function () {
             this.bindUIActions();
         },
 
         bindUIActions: function () {
-            $(".btn").on("click", function (e) { starter.sayHello(e); });
-        },
-
-        windowLoaded: function () {
-            console.log("Loaded");
-        },
-
-        windowResized: function () {
-            console.log("Resized");
-        },
-
-        windowScrolled: function () {
-            console.log("Scrolled");
+            $(".btn").on("click", function (e) { gituser.sayHello(e); });
         },
 
         sayHello: function (e) {
@@ -31,12 +19,6 @@
     };
 
     // DOM Ready
-    $(function () { starter.init(); });
-    // Images Loaded
-    $(window).load(function () { starter.windowLoaded(); });
-    // Window Resized (smart debounced event)
-    $(window).bind("debouncedresize", function () { starter.windowResized(); });
-    // Window Scrolled
-    $(window).on("scroll", function () { starter.windowScrolled(); });
+    $(function () { gituser.init(); });
 
 } (jQuery));
