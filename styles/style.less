@@ -177,10 +177,16 @@ input[type="submit"] {
         li {
             list-style:none;
             padding:@space;
-            & + li {
-                border-top:1px solid @black-10;
-            }
+            border-top:1px solid @black-10;
         }
     }
+}
+
+.error {
+    padding:@space;
+    background:#2ecc71;
+    color:#fff;
+    box-shadow:4px 4px 0 0 #ccc;
+    p:last-child { margin:0; }
 }
 

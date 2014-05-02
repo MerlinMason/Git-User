@@ -37,7 +37,11 @@
             <ul class="repo-list">
                 <% _.each(otherLangs, function(other) { %>
                     <li class="cf">
-                        <%- other.name %>
+                        <% if (other.name) { %>
+                            <%- other.name %>
+                        <% } else { %>
+                            Unknown language :(
+                        <% } %>
                         <span class="fr">
                             (<%- other.quantity %>)
                         </span>
